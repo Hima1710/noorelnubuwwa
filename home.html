@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>منصة نور النبوة - الرئيسية</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background-slider {
+      position: fixed;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+    }
+
+    .background-slider img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .background-slider img.active {
+      opacity: 1;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .overlay h1 {
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .buttons button {
+      margin: 1rem;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #ffc107;
+      color: #000;
+      transition: background-color 0.3s;
+    }
+
+    .buttons button:hover {
+      background-color: #e0a800;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    footer a {
+      color: #00ffb7;
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    #global-loader {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.85);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s;
+    }
+
+    #global-loader .spinner {
+      border: 6px solid #eee;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="global-loader">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="background-slider">
+    <img src="https://images.pexels.com/photos/30312945/pexels-photo-30312945.jpeg" class="active">
+    <img src="https://images.pexels.com/photos/9415518/pexels-photo-9415518.jpeg">
+    <img src="https://images.pexels.com/photos/9127735/pexels-photo-9127735.jpeg">
+    <img src="https://images.pexels.com/photos/19884486/pexels-photo-19884486.jpeg">
+    <img src="https://images.pexels.com/photos/30582372/pexels-photo-30582372.jpeg">
+    <img src="https://images.pexels.com/photos/7557818/pexels-photo-7557818.jpeg">
+    <img src="https://images.pexels.com/photos/12348131/pexels-photo-12348131.jpeg">
+  </div>
+
+  <div class="overlay">
+    <h1>منصة نور النبوة</h1>
+    <div class="buttons">
+      <button onclick="location.href='sections.html'">ابدأ التعلم</button>
+      <button onclick="location.href='live-courses.html'">الدورات التفاعلية</button>
+      <button onclick="location.href='student.html'">🎓 ملفي الشخصي</button>
+    </div>
+  </div>
+
+  <footer>
+    المطور: Muslim Tech _ مسلم تيك | 
+    <a href="https://wa.me/201108857529" target="_blank">تواصل عبر واتساب: 01108857529</a>
+  </footer>
+
+  <script>
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('global-loader');
+      if(loader) {
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 400);
+        }, 2000); // 2 ثانية
+      }
+    });
+
+    const images = document.querySelectorAll('.background-slider img');
+    let current = 0;
+
+    setInterval(() => {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }, 4000);
+  </script>
+
+</body>
+</html> 
